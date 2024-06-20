@@ -65,7 +65,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (newRowId == -1) Log.d("myTag", "data is not inserted");
         else Log.d("myTag", "data inserted");
-        db.close(); // Close database connection
+//        db.close(); // Close database connection
         return newRowId;
     }
 }

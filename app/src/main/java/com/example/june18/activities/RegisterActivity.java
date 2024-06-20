@@ -41,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
                 myPref.setName(etName.getText().toString().trim());
                 myPref.setEmail(etEmail.getText().toString().trim());
                 myPref.setPassword(etPassword.getText().toString().trim());
-                databaseManager = new DatabaseManager(getBaseContext());
+                databaseManager = new DatabaseManager(this);
                 finish();
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
