@@ -57,4 +57,15 @@ public class Expense {
     public void setDate(String date) {
         this.date = date;
     }
+
+    @Override
+    public String toString() {
+        return "Expense{" +
+                "expenseId=" + expenseId +
+                ", category='" + category + '\'' +
+                ", amount=" + amount +
+                ", note='" + note + '\'' +
+                ", date='" + date + '\'' +
+                '}';
+    }
 }

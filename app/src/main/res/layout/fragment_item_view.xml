@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.ItemViewFragment">
+
+    <ImageView
+        android:id="@+id/paid_image"
+        android:src="@drawable/paid_24px"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
+
+    <TextView
+        android:id="@+id/tv_expense_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/paid_image"
+        android:layout_marginTop="24dp"
+        android:textSize="24sp"
+        android:layout_marginStart="16dp"
+        android:text="textView" />
+
+    <TextView
+        android:id="@+id/tv_expense_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/paid_image"
+        android:layout_below="@+id/tv_expense_name"
+        android:layout_marginTop="10dp"
+        android:textSize="24sp"
+        android:layout_marginStart="16dp"
+        android:text="textView" />
+
+    <TextView
+        android:id="@+id/tv_expense_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/paid_image"
+        android:layout_below="@+id/tv_expense_amount"
+        android:layout_marginTop="10dp"
+        android:textSize="24sp"
+        android:layout_marginStart="16dp"
+        android:text="textView" />
+
+    <TextView
+        android:id="@+id/tv_expense_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/paid_image"
+        android:layout_below="@+id/tv_expense_date"
+        android:layout_marginTop="10dp"
+        android:textSize="24sp"
+        android:layout_marginStart="16dp"
+        android:text="textView" />
+
+    <Button
+        android:id="@+id/update_expense_button"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/update_expense"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/delete_expense_button"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_toRightOf="@+id/update_expense_button"
+        android:layout_marginBottom="16dp"
+        android:text="@string/delete"
+        android:textSize="24sp" />
+
+</RelativeLayout>

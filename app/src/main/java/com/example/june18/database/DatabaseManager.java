@@ -26,4 +26,10 @@ public class DatabaseManager {
     public double getTotalAmount() {
         return db.getTotalAmount();
     }
+
+    public void update(Expense expense) {db.update(expense);}
+
+    public void delete(int id) {
+        db.delete(id);
+    }
 }

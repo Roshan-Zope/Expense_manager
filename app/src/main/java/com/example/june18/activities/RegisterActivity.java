@@ -38,9 +38,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         registerButton.setOnClickListener(event -> {
             if (validateData()) {
-                myPref.setName(etName.getText().toString().trim());
-                myPref.setEmail(etEmail.getText().toString().trim());
-                myPref.setPassword(etPassword.getText().toString().trim());
+                myPref.setName(String.valueOf(etName.getText()).trim());
+                myPref.setEmail(String.valueOf(etEmail.getText()).trim());
+                myPref.setPassword(String.valueOf(etPassword.getText()).trim());
                 databaseManager = new DatabaseManager(this);
                 finish();
                 Intent intent = new Intent(this, MainActivity.class);
@@ -58,25 +58,25 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean validateData() {
         List<Boolean> check = new ArrayList<>();
 
-        if (!etName.getText().toString().trim().equals("")) check.add(true);
+        if (!String.valueOf(etName.getText()).trim().isEmpty()) check.add(true);
         else {
             check.add(false);
             tlName.setError("Invalid Name");
         }
 
-        if (!etEmail.getText().toString().trim().equals("")) check.add(true);
+        if (!String.valueOf(etEmail.getText()).trim().isEmpty()) check.add(true);
         else {
             check.add(false);
             tlEmail.setError("Invalid Email");
         }
 
-        if (!etPassword.getText().toString().trim().equals("") && etPassword.getText().toString().trim().length() >= 6) check.add(true);
+        if (!String.valueOf(etPassword.getText()).trim().isEmpty() && String.valueOf(etPassword.getText()).trim().length() >= 6) check.add(true);
         else {
             check.add(false);
             tlPassword.setError("Password is Invalid/ too short");
         }
 
-        if (!etConfirmPassword.getText().toString().trim().equals("") && etConfirmPassword.getText().toString().trim().equals(etPassword.getText().toString().trim())) check.add(true);
+        if (!String.valueOf(etConfirmPassword.getText()).trim().isEmpty() && String.valueOf(etConfirmPassword.getText()).trim().equals(String.valueOf(etPassword.getText()).trim())) check.add(true);
         else {
             check.add(false);
             tlConfirmPassword.setError("Password mismatch");

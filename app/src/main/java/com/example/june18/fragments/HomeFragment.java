@@ -1,5 +1,6 @@
 package com.example.june18.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -36,7 +37,6 @@ public class HomeFragment extends Fragment {
     private ExpenseListAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private List<Expense> expenses;
-    private DatabaseHelper dbHelper;
     private TextView tv_TotalAmount;
 
     public HomeFragment() {
@@ -90,6 +90,11 @@ public class HomeFragment extends Fragment {
         adapter = new ExpenseListAdapter(expenses);
         recyclerView.setAdapter(adapter);
         tv_TotalAmount.setText(String.valueOf("Total: " + RegisterActivity.databaseManager.getTotalAmount()));
+
+        adapter.setOnItemClickListener((view1, position) -> {
+            loadFragment(new ItemViewFragment(expenses.get(position)));
+            Log.d("myTag", expenses.get(position).toString());
+        });
     }
 
     private void loadFragment(Fragment fragment) {

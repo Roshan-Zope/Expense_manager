@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
 
         loginButton.setOnClickListener(event -> {
             if (validateData()) {
-                if (etEmail.getText().toString().trim().equals(myPref.getEmail().trim()) && etPassword.getText().toString().trim().equals(myPref.getPassword().trim())) {
+                if (String.valueOf(etEmail.getText()).trim().equals(myPref.getEmail().trim()) && String.valueOf(etPassword.getText()).trim().equals(myPref.getPassword().trim())) {
                     Intent intent = new Intent(this, MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -51,13 +51,13 @@ public class LoginActivity extends AppCompatActivity {
     private boolean validateData() {
         List<Boolean> check = new ArrayList<>();
 
-        if (!etEmail.getText().toString().trim().equals("")) check.add(true);
+        if (!String.valueOf(etEmail.getText()).trim().isEmpty()) check.add(true);
         else {
             check.add(false);
             tlEmail.setError("Invalid mail");
         }
 
-        if (!etPassword.getText().toString().trim().equals("") && etPassword.getText().toString().trim().length() >= 6) check.add(true);
+        if (!String.valueOf(etPassword.getText()).trim().isEmpty() && String.valueOf(etPassword.getText()).trim().length() >= 6) check.add(true);
         else {
             check.add(false);
             tlPassword.setError("Invalid Password");

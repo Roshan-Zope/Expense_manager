@@ -15,9 +15,18 @@ import java.util.List;
 
 public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.ViewHolder> {
     private List<Expense> expenses;
+    private OnItemClickListener onItemClickListener;
 
     public ExpenseListAdapter(List<Expense> expenses) {
         this.expenses = expenses;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
     }
 
     @NonNull
@@ -25,7 +34,7 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
     public ExpenseListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.expense_list_view, parent, false);
 
-        return new ViewHolder(view);
+        return new ViewHolder(view, onItemClickListener);
     }
 
     @Override
@@ -42,11 +51,20 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView expense_name;
         private TextView expense_amount;
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
 
             expense_name = itemView.findViewById(R.id.expense_name);
             expense_amount = itemView.findViewById(R.id.expense_amount);
+
+            itemView.setOnClickListener(v -> {
+                if (listener != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(v, position);
+                    }
+                }
+            });
         }
     }
 }
