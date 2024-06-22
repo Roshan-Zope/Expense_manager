@@ -1,7 +1,11 @@
 package com.example.june18.database;
 
 import android.content.Context;
+import android.util.Log;
+
 import com.example.june18.models.Expense;
+
+import java.util.List;
 
 public class DatabaseManager {
     private DatabaseHelper db;
@@ -11,6 +15,15 @@ public class DatabaseManager {
     }
 
     public void insertData(Expense expense) {
+        Log.d("myTag", "in DatabaseManager class");
         db.insertData(expense);
+    }
+
+    public List<Expense> fetchData() {
+        return db.fetchData();
+    }
+
+    public double getTotalAmount() {
+        return db.getTotalAmount();
     }
 }

@@ -2,6 +2,7 @@ package com.example.june18.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -9,6 +10,9 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import com.example.june18.models.Expense;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
@@ -23,6 +27,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String EXPENSE_TABLE_DATE_COLUMN = "date";
     private static final String CATEGORY_TABLE_CATEGORY_ID_COLUMN = "categoryId";
     private static final String CATEGORY_TABLE_CATEGORY_NAME_COLUMN = "category";
+    private static final String EXPENSE_TABLE_SELECT_QUERY = "SELECT * FROM expense";
+    private static final String EXPENSE_TABLE_GET_TOTAL_AMOUNT_QUERY = "SELECT SUM(amount) FROM expense";
     private static final String CREATE_EXPENSE_TABLE = "CREATE TABLE " + EXPENSE_TABLE_NAME +
             "( " +
             EXPENSE_TABLE_EXPENSE_ID_COLUMN + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -58,14 +64,44 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(EXPENSE_TABLE_CATEGORY_COLUMN, expense.getCategory());
-        values.put(EXPENSE_TABLE_AMOUNT_COLUMN, expense.getCategory());
+        values.put(EXPENSE_TABLE_AMOUNT_COLUMN, expense.getAmount());
         values.put(EXPENSE_TABLE_DATE_COLUMN, expense.getDate());
         values.put(EXPENSE_TABLE_NOTE_COLUMN, expense.getNote());
         long newRowId = db.insert(EXPENSE_TABLE_NAME, null, values);
 
         if (newRowId == -1) Log.d("myTag", "data is not inserted");
         else Log.d("myTag", "data inserted");
+        Log.d("myTag", "in DatabaseHelper class");
 //        db.close(); // Close database connection
         return newRowId;
+    }
+
+    public List<Expense> fetchData() {
+        List<Expense> expenses = new ArrayList<>();
+
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(EXPENSE_TABLE_SELECT_QUERY, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Expense expense = new Expense();
+                expense.setCategory(cursor.getString(cursor.getColumnIndexOrThrow(EXPENSE_TABLE_CATEGORY_COLUMN)));
+                expense.setAmount(cursor.getDouble(cursor.getColumnIndexOrThrow(EXPENSE_TABLE_AMOUNT_COLUMN)));
+                expenses.add(expense);
+            } while (cursor.moveToNext());
+        }
+        Log.d("myTag", "in fetch data method");
+
+        return expenses;
+    }
+
+    public double getTotalAmount() {
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(EXPENSE_TABLE_GET_TOTAL_AMOUNT_QUERY, null);
+
+        if (cursor.moveToNext()) {
+            return cursor.getDouble(0);
+        }
+        return 0d;
     }
 }

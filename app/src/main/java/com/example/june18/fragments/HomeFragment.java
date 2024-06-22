@@ -7,14 +7,24 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.june18.activities.RegisterActivity;
+import com.example.june18.adapters.ExpenseListAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.june18.R;
+import com.example.june18.database.DatabaseHelper;
+import com.example.june18.models.Expense;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
     private FloatingActionButton add_expense_fab;
@@ -22,6 +32,12 @@ public class HomeFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
     private String mParam2;
+    private RecyclerView recyclerView;
+    private ExpenseListAdapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private List<Expense> expenses;
+    private DatabaseHelper dbHelper;
+    private TextView tv_TotalAmount;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -46,7 +62,13 @@ public class HomeFragment extends Fragment {
     }
 
     private void initComponent(View view) {
+        tv_TotalAmount = view.findViewById(R.id.tv_TotalAmount);
         add_expense_fab = view.findViewById(R.id.add_expense_fab);
+        //dbHelper = new DatabaseHelper(getActivity());
+        recyclerView = view.findViewById(R.id.expense_list_recyclerView);
+        layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        expenses = new ArrayList<>();
     }
 
     @Override
@@ -64,6 +86,10 @@ public class HomeFragment extends Fragment {
         add_expense_fab.setOnClickListener(v -> {
             loadFragment(new AddExpenseFragment());
         });
+        expenses = RegisterActivity.databaseManager.fetchData();
+        adapter = new ExpenseListAdapter(expenses);
+        recyclerView.setAdapter(adapter);
+        tv_TotalAmount.setText(String.valueOf("Total: " + RegisterActivity.databaseManager.getTotalAmount()));
     }
 
     private void loadFragment(Fragment fragment) {

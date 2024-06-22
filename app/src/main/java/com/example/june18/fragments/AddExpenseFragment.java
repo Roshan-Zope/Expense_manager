@@ -86,11 +86,13 @@ public class AddExpenseFragment extends Fragment {
                 expense.setNote(et_note.getText().toString().trim());
 
                 insertData(expense);
+                Log.d("myTag", "after insert method");
             }
         });
     }
 
     private void insertData(Expense expense) {
+        Log.d("myTag", "in insertData method");
         RegisterActivity.databaseManager.insertData(expense);
     }
 
