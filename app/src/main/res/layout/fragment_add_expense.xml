@@ -1,89 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.AddExpenseFragment">
 
-    <TextView
-       android:id="@+id/textView"
-       android:textAlignment="center"
-       android:layout_margin="32dp"
-       android:textSize="24dp"
-       android:text="@string/add_expense"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tl_expense_name"
-        android:layout_below="@+id/textView"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_expense_name"
-            android:layout_width="match_parent"
-            android:drawableLeft="@drawable/paid_24px"
-            android:layout_height="wrap_content"
-            android:layout_margin="32dp"
-            android:hint="@string/expense_name" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tl_date"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentEnd="true"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_date"
-            android:drawableLeft="@drawable/calendar_month_24px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="32dp"
-            android:hint="@string/date" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tl_amount"
-        android:layout_below="@+id/tl_expense_name"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:padding="16dp"
+        android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_amount"
+        <TextView
+           android:id="@+id/textView"
+           android:textAlignment="center"
+           android:layout_margin="32dp"
+           android:textSize="24dp"
+           android:text="@string/add_expense"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tl_expense_name"
+            android:layout_below="@+id/textView"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_expense_name"
+                android:layout_width="match_parent"
+                android:drawableLeft="@drawable/paid_24px"
+                android:layout_height="wrap_content"
+                android:layout_margin="32dp"
+                android:hint="@string/expense_name" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tl_date"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentEnd="true"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_date"
+                android:drawableRight="@drawable/calendar_month_24px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="32dp"
+                android:hint="@string/date" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tl_amount"
+            android:layout_below="@+id/tl_expense_name"
             android:layout_width="match_parent"
-            android:drawableLeft="@drawable/currency_rupee_24px"
-            android:layout_height="wrap_content"
-            android:layout_margin="32dp"
-            android:hint="@string/amount" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tl_note"
-        android:layout_below="@+id/tl_amount"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_amount"
+                android:layout_width="match_parent"
+                android:drawableLeft="@drawable/currency_rupee_24px"
+                android:layout_height="wrap_content"
+                android:layout_margin="32dp"
+                android:hint="@string/amount" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_note"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tl_note"
+            android:layout_below="@+id/tl_amount"
             android:layout_width="match_parent"
-            android:drawableLeft="@drawable/description_24px"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_note"
+                android:layout_width="match_parent"
+                android:drawableLeft="@drawable/description_24px"
+                android:layout_height="match_parent"
+                android:layout_margin="32dp"
+                android:inputType="textMultiLine"
+                android:maxLines="6"
+                android:scrollbars="vertical"
+                android:hint="@string/note" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_below="@id/tl_note"
+            android:layout_width="match_parent"
             android:layout_margin="32dp"
-            android:inputType="textMultiLine"
-            android:maxLines="6"
-            android:scrollbars="vertical"
-            android:hint="@string/note" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"/>
 
-    <Button
-        android:id="@+id/add_expense_button"
-        android:layout_margin="32dp"
-        android:layout_below="@id/tl_note"
-        android:layout_width="match_parent"
-        android:text="@string/add_expense"
-        android:layout_height="wrap_content" />
 
-</RelativeLayout>
+
+        <Button
+            android:id="@+id/add_expense_button"
+            android:layout_margin="32dp"
+            android:layout_below="@id/chipGroup"
+            android:layout_width="match_parent"
+            android:text="@string/add_expense"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+</ScrollView>

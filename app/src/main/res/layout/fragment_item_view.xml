@@ -24,11 +24,22 @@
         android:text="textView" />
 
     <TextView
-        android:id="@+id/tv_expense_amount"
+        android:id="@+id/tv_expense_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/paid_image"
         android:layout_below="@+id/tv_expense_name"
+        android:layout_marginTop="24dp"
+        android:textSize="24sp"
+        android:layout_marginStart="16dp"
+        android:text="textView" />
+
+    <TextView
+        android:id="@+id/tv_expense_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/paid_image"
+        android:layout_below="@+id/tv_expense_category"
         android:layout_marginTop="10dp"
         android:textSize="24sp"
         android:layout_marginStart="16dp"

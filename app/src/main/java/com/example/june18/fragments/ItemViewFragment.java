@@ -25,6 +25,7 @@ public class ItemViewFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private TextView tv_expense_name;
+    private TextView tv_expense_category;
     private TextView tv_expense_amount;
     private TextView tv_expense_date;
     private TextView tv_expense_note;
@@ -69,6 +70,7 @@ public class ItemViewFragment extends Fragment {
 
     private void initComponent(View view) {
         tv_expense_name = view.findViewById(R.id.tv_expense_name);
+        tv_expense_category = view.findViewById(R.id.tv_expense_category);
         tv_expense_amount = view.findViewById(R.id.tv_expense_amount);
         tv_expense_date = view.findViewById(R.id.tv_expense_date);
         tv_expense_note = view.findViewById(R.id.tv_expense_note);
@@ -79,7 +81,8 @@ public class ItemViewFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        tv_expense_name.setText(expense.getCategory());
+        tv_expense_name.setText(expense.getName());
+        tv_expense_category.setText(expense.getCategory());
         tv_expense_date.setText(expense.getDate());
         tv_expense_amount.setText(String.valueOf(expense.getAmount()));
         tv_expense_note.setText(expense.getNote());

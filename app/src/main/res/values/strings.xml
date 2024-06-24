@@ -16,6 +16,8 @@
     <string name="expense_name">Expense</string>
     <string name="date">Date</string>
     <string name="amount">Amount</string>
+    <string name="category">Category</string>
+    <string name="add_category">Add Category</string>
     <string name="note">Note (Optional)</string>
     <string name="logout_button">Log out</string>
     <string name="add_expense">Add Expense</string>

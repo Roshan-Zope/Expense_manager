@@ -2,6 +2,8 @@ package com.example.june18.models;
 
 public class Expense {
     private int expenseId;
+    private int categoryId;
+    private String name;
     private String category;
     private double amount;
     private String note;
@@ -16,6 +18,22 @@ public class Expense {
         this.amount = amount;
         this.note = note;
         this.date = date;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     public int getExpenseId() {

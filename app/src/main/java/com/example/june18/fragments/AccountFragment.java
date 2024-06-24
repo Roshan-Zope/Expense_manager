@@ -14,6 +14,7 @@ import android.widget.Button;
 
 import com.example.june18.R;
 import com.example.june18.activities.RegisterActivity;
+import com.example.june18.database.DatabaseManager;
 import com.example.june18.utils.MyPref;
 
 public class AccountFragment extends Fragment {
@@ -21,7 +22,7 @@ public class AccountFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
     private String mParam2;
-
+    DatabaseManager databaseManager;
     private Button logoutButton;
     private MyPref myPref;
 
@@ -59,6 +60,7 @@ public class AccountFragment extends Fragment {
     private void initComponent(View view) {
         logoutButton = view.findViewById(R.id.logoutButton);
         myPref = new MyPref(getContext());
+        databaseManager = new DatabaseManager(getActivity());
     }
 
     @Override
@@ -69,6 +71,7 @@ public class AccountFragment extends Fragment {
             myPref.setEmail("");
             myPref.setName("");
             myPref.setPassword("");
+            databaseManager.deleteAccount();
 
             Intent intent = new Intent(getActivity(), RegisterActivity.class);
             getActivity().finish();
